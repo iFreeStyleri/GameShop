@@ -1,0 +1,9 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <SolidColorBrush x:Key="TextColor" Color="#FF717CD6"/>
+    <SolidColorBrush x:Key="OverTextBoxColor" Color="#FFE8E8E8"/>
+    <SolidColorBrush x:Key="KeyboardTextBoxColor" Color="#FFD4D4D4"/>
+    <SolidColorBrush x:Key="DefaultColor" Color="#FFB5BBED"/>
+    <SolidColorBrush x:Key="DefaultFocuseColor" Color="#FF999FD6"/>
+    <SolidColorBrush x:Key="DefaultClickColor" Color="#FF8288C1"/>
+</ResourceDictionary>

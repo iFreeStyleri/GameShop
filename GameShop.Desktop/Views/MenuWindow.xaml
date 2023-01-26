@@ -1,0 +1,47 @@
+﻿<Window x:Class="GameShop.Desktop.Views.MenuWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GameShop.Desktop.Views"
+        xmlns:vm="clr-namespace:GameShop.Desktop.ViewModels"
+        xmlns:v="clr-namespace:GameShop.Desktop.Views"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignData x:Type vm:MenuWindowViewModel, IsDesignTimeCreatable=True}"
+        Title="MenuWindow" Height="540" Width="728" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type vm:CatalogViewModel}">
+            <v:CatalogView DataContext="{Binding DataContext.SelectedViewModel, RelativeSource={RelativeSource AncestorType=Window}}"/>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="179*"/>
+            <ColumnDefinition Width="421*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="17*"/>
+            <RowDefinition Height="208*"/>
+        </Grid.RowDefinitions>
+        <Grid Name="UpPanel" MouseDown="UpPanel_MouseDown" Grid.ColumnSpan="2" Background="{StaticResource DefaultColor}">
+            <TextBlock Foreground="White" HorizontalAlignment="Left" Text="Dex Place" FontSize="18" Margin="5" FontFamily="Artifakt Element Heavy"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Style="{DynamicResource DefaultButton}" FontSize="16" Name="MinButton" Width="35" Content="—" Foreground="White" Click="MinButton_Click"/>
+                <Button Style="{DynamicResource DefaultButton}" FontSize="16" Name="CloseButton" Width="35" Content="X" Foreground="White" Click="CloseButton_Click"/>
+            </StackPanel>
+        </Grid>
+        <Grid Name="MenuPanel" Grid.Row="1" Background="{StaticResource DefaultColor}" Margin="0,1,0,0">
+            <DockPanel LastChildFill="False" VerticalAlignment="Top" Height="160">
+                <Separator DockPanel.Dock="Bottom" Background="White" Margin="16,5"/>
+                <TextBlock Margin="0,10" DockPanel.Dock="Bottom" FontFamily="Arial Black" Foreground="White" Text="{Binding Nickname}" VerticalAlignment="Top" TextAlignment="Center" FontSize="22"/>
+                <Image DockPanel.Dock="Bottom" Width="105" Height="105" Source="Assets/logo.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+            </DockPanel>
+            <StackPanel Margin="0,160,0,100">
+                <Button Name="Order" Style="{DynamicResource DefaultButton}" Height="35" Foreground="White" Content="Заказы" FontSize="16" Click="Order_Click"/>
+                <Button Name="Catalog" Style="{DynamicResource DefaultButton}" Height="35" Foreground="White" Content="Каталог" FontSize="16"/>
+            </StackPanel>
+            <Button Name="LogOut" Style="{DynamicResource DefaultButton}" Height="35" Foreground="White" Content="Выход из аккаунта" FontSize="16" VerticalAlignment="Bottom" Click="LogOut_Click"/>
+        </Grid>
+        <ContentControl Grid.Column="1" Grid.Row="1" Content="{Binding SelectedViewModel}"/>
+    </Grid>
+</Window>
