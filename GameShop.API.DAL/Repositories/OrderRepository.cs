@@ -26,7 +26,7 @@ namespace GameShop.API.DAL.Repositories
         }
 
         public async Task<List<Order>> GetAccountOrders(int accountId)
-            => await _context.Orders.Include(o => o.Account).Where(w => w.Account.Id == accountId).ToListAsync();
+            => await _context.Orders.Include(o => o.Account).Include(g => g.Game).Where(w => w.Account.Id == accountId).ToListAsync();
 
         public async Task<List<Order>> GetAll()
             => await _context.Orders.ToListAsync();

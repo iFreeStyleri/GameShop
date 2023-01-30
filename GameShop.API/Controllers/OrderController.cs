@@ -19,7 +19,7 @@ namespace GameShop.API.Controllers
         [HttpPost("place-order")]
         public async Task<IActionResult> PlaceOrder(PlaceOrderDTO dto)
         {
-            var response = await _orderService.PlaceOrder(new Order { Account = dto.Account, Game = dto.Game, State = OrderState.Active });
+            var response = await _orderService.PlaceOrder(dto.Account, dto.Game );
             switch (response.StatusCode)
             {
                 case HttpStatusCode.BadRequest:

@@ -32,6 +32,7 @@ namespace GameShop.Desktop
             services.AddSingleton<IGameShopManager, GameShopManager>(provider => new GameShopManager(services, "http://localhost:5223/"));
             services.AddSingleton<MenuWindowViewModel>();
             services.AddSingleton<CatalogViewModel>();
+            services.AddTransient<OrderViewModel>();
             services.AddTransient<MenuWindow>();
             services.AddTransient<AuthWindow>();
             services.AddTransient<RegWindow>();

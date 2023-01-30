@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GameShop.Desktop.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,21 @@ namespace GameShop.Desktop.Views
         public CatalogView()
         {
             InitializeComponent();
+        }
+
+        private void Buy_Click(object sender, RoutedEventArgs e)
+        {
+            var viewModel = (CatalogViewModel)DataContext;
+            var button = (Button)sender;
+            var game = viewModel.GetGameAcceptOrder((int)button.Tag);
+            if(game != null)
+            {
+                var orderAcceptWindow = new OrderAcceptWindow(game);
+                if(orderAcceptWindow.ShowDialog() == true)
+                {
+                    viewModel.PlaceOrder(game);
+                }
+            }
         }
     }
 }

@@ -15,9 +15,13 @@ namespace GameShop.API.Core.Implementations
     public class OrderService : IOrderService
     {
         private readonly IOrderRepository _orderRepository;
-        public OrderService(IOrderRepository orderRepository)
+        private readonly IGameRepository _gameRepository;
+        private readonly IAccountRepository _accountRepository;
+        public OrderService(IOrderRepository orderRepository, IGameRepository gameRepository, IAccountRepository accountRepository)
         {
             _orderRepository = orderRepository;
+            _gameRepository = gameRepository;
+            _accountRepository = accountRepository;
         }
 
         public async Task<IBaseResponse<List<Order>>> GetAccountOrders(Account account)
@@ -30,11 +34,13 @@ namespace GameShop.API.Core.Implementations
             return new BaseResponse<List<Order>> { StatusCode = HttpStatusCode.OK, Data = result };
         }
 
-        public async Task<IBaseResponse<Order>> PlaceOrder(Order order)
+        public async Task<IBaseResponse<Order>> PlaceOrder(Account account, Game game)
         {
-            if (order.Account == null || order.Game == null)
-                return new BaseResponse<Order> { Data = order, Description = "Game or Account is null", StatusCode = HttpStatusCode.BadRequest };
-            await _orderRepository.Insert(order);
+            var accountResult = await _accountRepository.GetById(account.Id);
+            var gameResult = await _gameRepository.GetById(game.Id);
+            if(accountResult == null || gameResult == null)
+                return new BaseResponse<Order> { Description = "Game or Account is null", StatusCode = HttpStatusCode.BadRequest };
+            await _orderRepository.Insert(new Order { Account = accountResult, Game = gameResult, State = OrderState.Active});
             return new BaseResponse<Order> { StatusCode = HttpStatusCode.OK };
         }
     }

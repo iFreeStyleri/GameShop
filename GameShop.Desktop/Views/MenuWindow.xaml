@@ -13,6 +13,10 @@
         <DataTemplate DataType="{x:Type vm:CatalogViewModel}">
             <v:CatalogView DataContext="{Binding DataContext.SelectedViewModel, RelativeSource={RelativeSource AncestorType=Window}}"/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:OrderViewModel}">
+            <v:OrderView DataContext="{Binding DataContext.SelectedViewModel, RelativeSource={RelativeSource AncestorType=Window}}"/>
+        </DataTemplate>
+
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -38,7 +42,7 @@
             </DockPanel>
             <StackPanel Margin="0,160,0,100">
                 <Button Name="Order" Style="{DynamicResource DefaultButton}" Height="35" Foreground="White" Content="Заказы" FontSize="16" Click="Order_Click"/>
-                <Button Name="Catalog" Style="{DynamicResource DefaultButton}" Height="35" Foreground="White" Content="Каталог" FontSize="16"/>
+                <Button Name="Catalog" Style="{DynamicResource DefaultButton}" Height="35" Foreground="White" Content="Каталог" FontSize="16" Click="Catalog_Click"/>
             </StackPanel>
             <Button Name="LogOut" Style="{DynamicResource DefaultButton}" Height="35" Foreground="White" Content="Выход из аккаунта" FontSize="16" VerticalAlignment="Bottom" Click="LogOut_Click"/>
         </Grid>

@@ -13,12 +13,10 @@ namespace GameShop.API.DAL.Repositories
     public class AccountRepository : IAccountRepository
     {
         private readonly GameDbContext _gameContext;
-
         public AccountRepository(GameDbContext gameContext)
         {
             _gameContext = gameContext;
         }
-
         public async Task Delete(Account model)
         {
             _gameContext.Accounts.Remove(model);

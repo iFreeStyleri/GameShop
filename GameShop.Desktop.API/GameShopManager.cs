@@ -23,9 +23,9 @@ namespace GameShop.Desktop.API
                 client.BaseAddress = new Uri(hostName);
                 return client;
             });
-            services.AddTransient<IAccountService, AccountService>();
-            services.AddTransient<IGameService, GameService>();
-            services.AddTransient<IOrderService, OrderService>();
+            services.AddSingleton<IAccountService, AccountService>();
+            services.AddSingleton<IGameService, GameService>();
+            services.AddSingleton<IOrderService, OrderService>();
             _provider = services.BuildServiceProvider();
         }
 

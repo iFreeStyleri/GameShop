@@ -12,7 +12,7 @@ namespace GameShop.API.Core.Abstractions.Services
     public interface IOrderService
     {
         Task<IBaseResponse<List<Order>>> GetAccountOrders(Account accoutn);
-        public Task<IBaseResponse<Order>> PlaceOrder(Order order);
+        public Task<IBaseResponse<Order>> PlaceOrder(Account account, Game game);
 
     }
 }

@@ -8,10 +8,10 @@
              d:Height="400"
              mc:Ignorable="d" Height="auto" Width="auto">
     <Grid Margin="0,0,10,22">
-        <Border Background="{DynamicResource DefaultColor}" VerticalAlignment="Top" Margin="10">
+        <Border Background="{DynamicResource DefaultColor}" VerticalAlignment="Top" Margin="10,10,10,0">
             <TextBlock Text="Каталог игр" FontFamily="Arial Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Margin="10"/>
         </Border>
-        <ListBox ItemsSource="{Binding Games}" Margin="10,70,10,10">
+        <ListBox Style="{DynamicResource CatalogListBox}" ItemsSource="{Binding Games}" Margin="10,55,10,0">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel MaxWidth="480"/>
@@ -22,14 +22,14 @@
                     <Grid>
                         <Border Padding="5" CornerRadius="8" Background="{DynamicResource DefaultColor}" MinHeight="100" MinWidth="100">
                             <StackPanel >
-                                <TextBlock Text="{Binding Name}" FontSize="18" Foreground="White" TextWrapping="WrapWithOverflow" MaxWidth="120"/>
+                                <TextBlock Text="{Binding Name}" FontFamily="Arial Black" FontSize="18" Foreground="White" TextWrapping="WrapWithOverflow" MaxWidth="208"/>
                                 <Separator Background="White" Margin="5"/>
-                                <TextBlock Text="{Binding Genre}" FontSize="16" Foreground="White" MaxWidth="120"/>
-                                <TextBlock Text="{Binding Description}" FontSize="14" Foreground="White" MaxWidth="120" MaxHeight="80" TextWrapping="WrapWithOverflow"/>
+                                <TextBlock Text="{Binding Genre}" FontSize="16" Foreground="White" MaxWidth="208"/>
+                                <TextBlock Text="{Binding Description}" FontSize="14" Foreground="White" MaxWidth="208" MaxHeight="98" MinHeight="98" TextWrapping="WrapWithOverflow"/>
                                 <Separator Background="White" Margin="5"/>
                                 <DockPanel LastChildFill="True">
-                                    <TextBlock Text="{Binding ReleaseDate, StringFormat=dd/MM/yy}" Foreground="White" Margin="5,0" FontSize="16" FontFamily="Arial Bold"/>
-                                    <Button Content="Купить" Foreground="White" FontSize="16" Height="30" Width="80" Style="{StaticResource DefaultButton}"/>
+                                    <TextBlock Text="{Binding ReleaseDate, StringFormat=dd/MM/yy}" Foreground="White" Margin="5,0" FontSize="16" FontFamily="Arial Black"/>
+                                    <Button Click="Buy_Click" Name="Buy" Tag="{Binding Id}" Content="Купить" Foreground="White" FontSize="16" Height="30" Width="80" Style="{StaticResource DefaultButton}"/>
                                 </DockPanel>
                             </StackPanel>
                         </Border>
@@ -39,11 +39,11 @@
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
+                        <Trigger Property="Selector.IsSelectionActive" Value="True">
                             <Setter Property="Background" Value="{x:Null}"/>
                             <Setter Property="BorderBrush" Value="{x:Null}"/>
                         </Trigger>
-                        <Trigger Property="IsSelected" Value="True">
+                        <Trigger Property="Selector.IsSelected" Value="True">
                             <Setter Property="Background" Value="{x:Null}"/>
                             <Setter Property="BorderBrush" Value="{x:Null}"/>
                         </Trigger>

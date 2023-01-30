@@ -15,7 +15,7 @@ namespace GameShop.Desktop.API.Implementations.Services
 {
     public class AccountService : IAccountService
     {
-        public Account Account { get; private set; }
+        public Account AccountLogin { get; private set; }
         private readonly HttpClient _httpClient;
 
         public AccountService(HttpClient httpClient)
@@ -30,7 +30,7 @@ namespace GameShop.Desktop.API.Implementations.Services
             switch (result.StatusCode)
             {
                 case HttpStatusCode.OK:
-                    Account = result.Data;
+                    AccountLogin = result.Data;
                     return result.Data;
                 case HttpStatusCode.NotFound:
                     throw new HttpRequestException("NotFound");
@@ -46,7 +46,7 @@ namespace GameShop.Desktop.API.Implementations.Services
             switch (result.StatusCode)
             {
                 case HttpStatusCode.Created:
-                    Account = result.Data;
+                    AccountLogin = result.Data;
                     return result.Data;
                 case HttpStatusCode.NotFound:
                     throw new HttpRequestException("NotFound");

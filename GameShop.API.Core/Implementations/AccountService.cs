@@ -22,7 +22,8 @@ namespace GameShop.API.Core.Implementations
         {
             var account = await _accountRepository.GetByEmailAndPassword(email, password);
             if(account  == null)
-                return new BaseResponse<Account> { StatusCode = HttpStatusCode.NotFound, Description = "Account not found" };
+                return new BaseResponse<Account> 
+                { StatusCode = HttpStatusCode.NotFound, Description = "Account not found" };
             return new BaseResponse<Account> { Data = account, StatusCode = HttpStatusCode.OK };
         }
 
@@ -30,7 +31,8 @@ namespace GameShop.API.Core.Implementations
         {
             var result = await _accountRepository.GetByEmailAndPassword(account.Email, account.Password);
             if (result != null)
-                return new BaseResponse<Account> { StatusCode = HttpStatusCode.BadRequest, Description = "Account already exist" };
+                return new BaseResponse<Account>
+                { StatusCode = HttpStatusCode.BadRequest, Description = "Account already exist" };
             await _accountRepository.Insert(account);
             var response = await _accountRepository.GetByEmailAndPassword(account.Email, account.Password);
             return new BaseResponse<Account> { StatusCode = HttpStatusCode.Created, Data = response };

@@ -10,7 +10,7 @@ namespace GameShop.Desktop.API.Abstractions.Services
 {
     public interface IAccountService
     {
-        public Account Account { get; }
+        public Account AccountLogin { get; }
         public Task<Account> Login(LoginDTO @params);
         public Task<Account> Register(RegisterDTO @params);
     }

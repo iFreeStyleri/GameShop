@@ -32,11 +32,12 @@ namespace GameShop.API.Controllers
                     return BadRequest();
             }
         }
-
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterDTO dto)
         {
-            var account = new Account { Login = dto.Login, Password = dto.Password, Email = dto.Email, Created = DateTime.Now };
+            var account = new Account {
+                Login = dto.Login, Password = dto.Password,
+                Email = dto.Email, Created = DateTime.Now };
             var response = await _accountService.Register(account);
             switch (response.StatusCode)
             {

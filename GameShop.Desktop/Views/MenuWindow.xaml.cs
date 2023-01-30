@@ -52,6 +52,12 @@ namespace GameShop.Desktop.Views
 
         private void Order_Click(object sender, RoutedEventArgs e)
         {
+            _viewModel.SelectedViewModel = _viewModel.OrderViewModel;
+            _viewModel.OrderViewModel.Init();
+        }
+
+        private void Catalog_Click(object sender, RoutedEventArgs e)
+        {
             _viewModel.SelectedViewModel = _viewModel.CatalogViewModel;
             _viewModel.CatalogViewModel.Init();
         }

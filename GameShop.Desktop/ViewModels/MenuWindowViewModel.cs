@@ -11,6 +11,7 @@ namespace GameShop.Desktop.ViewModels
 {
     public class MenuWindowViewModel : ViewModelBase
     {
+        public OrderViewModel OrderViewModel { get; init; }
         public CatalogViewModel CatalogViewModel { get; init; }
         private readonly IGameShopManager _manager;
         private string _nickname;
@@ -26,11 +27,14 @@ namespace GameShop.Desktop.ViewModels
             set => Set(ref _selectedViewModel, value);
         }
 
-        public MenuWindowViewModel(IGameShopManager manager, CatalogViewModel catalogViewModel)
+        public MenuWindowViewModel(IGameShopManager manager, CatalogViewModel catalogViewModel, OrderViewModel orderViewModel)
         {
             _manager = manager;
             CatalogViewModel = catalogViewModel;
+            OrderViewModel = orderViewModel;
             SelectedViewModel = CatalogViewModel;
+            CatalogViewModel.Init();
+            OrderViewModel.Init();
         }
         public MenuWindowViewModel()
         {
@@ -39,5 +43,6 @@ namespace GameShop.Desktop.ViewModels
         {
             Nickname = account.Login;
         }
+
     }
 }

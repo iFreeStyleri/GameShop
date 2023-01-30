@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace GameShop.Desktop.Views
 {
     /// <summary>
-    /// Логика взаимодействия для OrderViewModel.xaml
+    /// Логика взаимодействия для OrderView.xaml
     /// </summary>
-    public partial class OrderViewModel : UserControl
+    public partial class OrderView : UserControl
     {
-        public OrderViewModel()
+        public OrderView()
         {
             InitializeComponent();
         }

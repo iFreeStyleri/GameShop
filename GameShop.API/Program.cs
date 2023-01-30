@@ -1,7 +1,6 @@
 using GameShop.API.Core;
-using GameShop.API.Core.Abstractions.Repositories;
 using GameShop.API.DAL;
-using GameShop.API.DAL.Repositories;
+using Newtonsoft.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,10 +10,12 @@ services
     .ServiceInit()
     .DataInit();
 
-services.AddControllers();
+services.AddControllers().AddNewtonsoftJson(opt =>
+{
+    opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+});
 services.AddEndpointsApiExplorer();
 services.AddSwaggerGen();
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -25,7 +26,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
 
 app.MapControllers();
